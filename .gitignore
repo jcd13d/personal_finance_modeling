@@ -1,0 +1,7 @@
+__pycache__/
+.DS_Store
+.idea
+docs/
+executions/
+housing_mkt_schedules/*.csv
+incomes/*.csv
