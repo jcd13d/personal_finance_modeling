@@ -133,4 +133,4 @@ docs/
 executions/
 housing_mkt_schedules/*.csv
 incomes/*.csv
->>>>>>> 8fcb6c08a6357f22c47717ec738e0f6635bc7218
+out.csv
