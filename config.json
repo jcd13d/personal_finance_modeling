@@ -1,26 +1,26 @@
 {
   "loans": [
     {
-      "name": "house loan",
+      "name": "investment loan",
       "start_timestamp": 202301,
       "end_timestamp": 205212,
-      "loan_amount": 900000,
+      "loan_amount": 600000,
       "rate": 0.055
     }
   ],
   "assets": [
     {
-      "name": "house",
+      "name": "property",
       "start_timestamp": 202301,
       "end_timestamp": 205212,
-      "asset_cost": 1000000,
+      "asset_cost": 700000,
       "appreciation_type": "specified",
       "appreciation_args": {
         "csv_loc": "housing_mkt_schedules/normal_housing_mkt.csv"
       },
-      "income_type": "constant",
+      "income_type": "proportional",
       "income_args": {
-        "income_amount": 0
+        "proportion": 0.005
       }
     }
   ],
@@ -52,11 +52,26 @@
       "start_timestamp": 202301,
       "end_timestamp": 205212,
       "income_amount": -7000
+    },
+    {
+      "name": "Rent",
+      "start_timestamp": 202301,
+      "end_timestamp": 205212,
+      "income_amount": -4000
     }
   ],
-  "plotting": [
-    {
-      "plotting cfg": 0
-    }
-  ]
+  "plotting": {
+    "figsize": [
+      13,
+      7
+    ],
+    "xrange": [
+      0,
+      120
+    ],
+    "yrange": [
+      -1000000,
+      1300000
+    ]
+  }
 }

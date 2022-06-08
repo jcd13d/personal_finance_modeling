@@ -2,6 +2,7 @@ import json
 # from FinanceTools.FixedIncomes import FixedIncome, OneTimePayment, TaxedSalary, Salary, MonthlyExpense, OneTimeGift
 import os
 import matplotlib.pyplot as plt
+import matplotlib
 
 from FinancesTools.FinancesObjects import FinancesBuilder
 from FinancesTools.Income import SimpleIncomeStream, SpecifiedIncomeStream
@@ -56,10 +57,22 @@ def builder_pipeline(builder, config):
     return builder
 
 
-def plots(df, out_dir):
-    plt.scatter(df.index, df['NW'])
+def plots(df, out_dir, xrange=None, yrange=None, figsize=None):
+    fig, ax = plt.subplots(figsize=figsize)
+    ax.plot(df.index, df['NW'], label="Net Worth", marker="o")
+    ax.plot(df.index, df['Cash Balance'], label="Cash Balance", marker="o")
+    ax.plot(df.index, df['Assets'], label="Assets", marker="o")
+    ax.plot(df.index, df['Liabilities'], label="Liabilities", marker="o")
+    plt.xticks([i for i in df.index if i % 2 == 0], [x for i, x in enumerate(df['timestamp']) if i % 2 == 0], rotation=45)
+    plt.hlines(y=0, xmin=min(df.index), xmax=max(df.index), color="black", linestyles="--")
+    plt.xlim(xrange)
+    plt.ylim(yrange)
     plt.xlabel("months")
-    plt.ylabel("NW")
+    plt.ylabel("Dollars")
+    ax.get_yaxis().set_major_formatter(matplotlib.ticker.FuncFormatter(lambda x, p: format(int(x), ',')))
+    plt.grid()
+    plt.legend()
+    plt.tight_layout()
     plt.savefig(os.path.join(out_dir, "nw_plot.jpg"))
 
 
@@ -85,6 +98,6 @@ if __name__ == '__main__':
     df = builder.generate_master_df()
     print("printing")
     print(df)
-    plots(df, executions_path)
+    plots(df, executions_path, **config['plotting'])
     print(executions_path)
     df.to_csv(out_path)

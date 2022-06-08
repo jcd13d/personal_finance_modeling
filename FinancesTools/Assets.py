@@ -58,10 +58,10 @@ class CashFlowAsset(FinanceObject):
         self.add_column_object(OneTimeCost(f"{name} Cost", self.zero_day, self.asset_cost))
         # asset worth
         self.add_column_object(OneTimeAsset(f"{name} Asset Delta", self.zero_day, self.asset_cost))
-        # asset cash flow in
-        self.add_column_object(self.get_income_schedule(income_type, income_args))
         # asset appreciation
-        self.add_column_object(self.get_appreciation_schedule(appreciation_type, appreciation_args))
+        self.add_column_object(self.appreciation)
+        # asset cash flow in
+        self.add_column_object(self.income)
 
     def get_appreciation_schedule(self, appreciation_type, appreciation_args):
         if appreciation_type == "constant":
@@ -72,6 +72,8 @@ class CashFlowAsset(FinanceObject):
     def get_income_schedule(self, income_type, income_args):
         if income_type == "constant":
             return self.generate_constant_income_schedule(**income_args)
+        elif income_type == "proportional":
+            return self.generate_proportional_income_schedule(**income_args)
 
     def generate_constant_appreciation_schedule(self, appreciation_amount):
         schedule = [appreciation_amount for i in range(len(ColumnObject.build_index(self.start, self.end)))]
@@ -91,7 +93,13 @@ class CashFlowAsset(FinanceObject):
         cu_appreciation = (pd.Series(apprectiation_monthly) - self.asset_cost).diff()
         return AppreciationSchedule(f"{self.name} appreciation", self.zero_day, self.end, cu_appreciation)
 
-
     def generate_constant_income_schedule(self, income_amount):
         schedule = [income_amount for i in range(len(ColumnObject.build_index(self.start, self.end)))]
         return IncomeSchedule(f"{self.name} income", self.start, self.end, schedule)
+
+    def generate_proportional_income_schedule(self, proportion):
+        asset_value = [self.asset_cost + x for x in self.appreciation.column.fillna(0).cumsum().fillna(0)]
+        print(self.appreciation.column)
+        print(asset_value)
+        schedule = [i*proportion for i in asset_value]
+        return IncomeSchedule(f"{self.name} income", self.zero_day, self.end, schedule)
