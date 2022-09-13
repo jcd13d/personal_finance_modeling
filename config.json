@@ -33,8 +33,8 @@
     },
     {
       "type": "manual_schedule",
-      "name": "Jenny Salary",
-      "csv_path": "incomes/jenny_income_conservative.csv"
+      "name": "Alejandra Salary",
+      "csv_path": "incomes/alejandra_income_conservative.csv"
     },
     {
       "type": "manual_schedule",
@@ -44,8 +44,8 @@
     },
     {
       "type": "manual_schedule",
-      "name": "Justin Salary",
-      "csv_path": "incomes/justin_income_conservative.csv"
+      "name": "Matt Salary",
+      "csv_path": "incomes/matt_income_conservative.csv"
     },
     {
       "name": "Living Expenses",
