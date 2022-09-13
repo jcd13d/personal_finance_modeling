@@ -79,8 +79,7 @@ def plots(df, out_dir, xrange=None, yrange=None, figsize=None):
 if __name__ == '__main__':
     config_loc = "config.json"
     time = datetime.today().strftime('%Y%m%d%H%M%S')
-    #out_path = f"{time}.csv"
-    out_path = 'output.csv'
+    out_path = f"{time}.csv"
     executions_path = "executions"
     executions_path = os.path.join(executions_path, time)
     os.mkdir(executions_path)

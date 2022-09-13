@@ -1,11 +1,18 @@
 {
   "loans": [
     {
-      "name": "investment loan",
+      "name": "mortgage loan",
       "start_timestamp": 202301,
       "end_timestamp": 205212,
-      "loan_amount": 600000,
-      "rate": 0.055
+      "loan_amount": 442400,
+      "rate": 0.0525
+    },
+    {
+      "name": "alejandra college loan",
+      "start_timestamp": 202301,
+      "end_timestamp": 202501,
+      "loan_amount": 7000,
+      "rate": 0.051
     }
   ],
   "assets": [
@@ -13,7 +20,7 @@
       "name": "property",
       "start_timestamp": 202301,
       "end_timestamp": 205212,
-      "asset_cost": 700000,
+      "asset_cost": 553000,
       "appreciation_type": "specified",
       "appreciation_args": {
         "csv_loc": "housing_mkt_schedules/normal_housing_mkt.csv"
@@ -29,18 +36,12 @@
       "name": "cash start",
       "start_timestamp": 202301,
       "end_timestamp": 202301,
-      "income_amount": 100000
+      "income_amount": 15000
     },
     {
       "type": "manual_schedule",
       "name": "Alejandra Salary",
       "csv_path": "incomes/alejandra_income_conservative.csv"
-    },
-    {
-      "type": "manual_schedule",
-      "name": "Jenny Loan Service",
-      "csv_path": "incomes/jenny_income_conservative.csv",
-      "percentage": -0.1
     },
     {
       "type": "manual_schedule",
@@ -51,13 +52,7 @@
       "name": "Living Expenses",
       "start_timestamp": 202301,
       "end_timestamp": 205212,
-      "income_amount": -7000
-    },
-    {
-      "name": "Rent",
-      "start_timestamp": 202301,
-      "end_timestamp": 205212,
-      "income_amount": -4000
+      "income_amount": -2000
     }
   ],
   "plotting": {
