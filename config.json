@@ -68,19 +68,19 @@
       "type": "manual_schedule",
       "name": "Alejandra Salary",
       "csv_path": "incomes/alejandra_income_conservative.csv",
-      "percentage": 0.7
+      "percentage": 0.72
     },
     {
       "type": "manual_schedule",
       "name": "Matt Salary",
       "csv_path": "incomes/matt_income_conservative.csv",
-      "percentage": 0.7
+      "percentage": 0.72
     },
     {
       "name": "Living Expenses",
       "start_timestamp": 202302,
       "end_timestamp": 205212,
-      "income_amount": -2500
+      "income_amount": -3000
     }
   ],
   "plotting": {
